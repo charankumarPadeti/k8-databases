@@ -6,8 +6,9 @@ metadata:
 spec:
   type: LoadBalancer
   selector: #paina vuna pod create ipothadi service dheniki velli attach avvali that is the service.
-    app: mongodb
-    demo: helm
+    app: mongodb # has to match .spec.selector.matchLabels
+    project: roboshop
+    tier: db
   ports:
     - protocol: TCP
       port: 80 #service port we can give anything

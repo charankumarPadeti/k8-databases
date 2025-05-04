@@ -1,36 +1,36 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: web
+  name: mongodb
   Namespace: roboshop
 spec:
   selector:
     matchLabels:
-      app: nginx # has to match .spec.template.metadata.labels
+      app: mongodb # has to match .spec.selector.matchLabels
+      project: roboshop
+      tier: db   # has to match .spec.template.metadata.labels
   serviceName: "nginx"
-  replicas: 3 # by default is 1
+  replicas: {{ .Values.statefulset.replicas }}
   minReadySeconds: 10 # by default is 0
   template:
     metadata:
       labels:
-        app: nginx # has to match .spec.selector.matchLabels
+        app: mongodb # has to match .spec.selector.matchLabels
+        project: roboshop
+        tier: db  
     spec:
-      terminationGracePeriodSeconds: 10
       containers:
-      - name: nginx
-        image: registry.k8s.io/nginx-slim:0.24
-        ports:
-        - containerPort: 80
-          name: web
+      - name: mongodb
+        image: {{ .Values.statefulset.imageVersion }}
         volumeMounts:
-        - name: www
-          mountPath: /usr/share/nginx/html
+        - name: mongodb
+          mountPath: /data/db
   volumeClaimTemplates:
   - metadata:
-      name: www
+      name: mongodb
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "my-storage-class"
+      storageClassName: "ebs-sc"
       resources:
         requests:
           storage: 1Gi
