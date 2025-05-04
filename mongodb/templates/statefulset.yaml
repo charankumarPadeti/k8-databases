@@ -3,19 +3,23 @@ kind: StatefulSet
 metadata:
   name: mongodb
   Namespace: roboshop
+  labels:
+    app: mongodb
+    project: roboshop
+    tier: db
 spec:
   selector:
     matchLabels:
-      app: mongodb # has to match .spec.selector.matchLabels
+      app: mongodb 
       project: roboshop
-      tier: db   # has to match .spec.template.metadata.labels
-  serviceName: "nginx"
+      tier: db
+  serviceName: mongodb
   replicas: {{ .values.statefulset.replicas }}
-  minReadySeconds: 10 # by default is 0
+  minReadySeconds: 10
   template:
     metadata:
       labels:
-        app: mongodb # has to match .spec.selector.matchLabels
+        app: mongodb 
         project: roboshop
         tier: db  
     spec:
