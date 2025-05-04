@@ -10,7 +10,7 @@ spec:
       project: roboshop
       tier: db   # has to match .spec.template.metadata.labels
   serviceName: "nginx"
-  replicas: {{ .Values.statefulset.replicas }}
+  replicas: {{ .values.statefulset.replicas }}
   minReadySeconds: 10 # by default is 0
   template:
     metadata:
@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: {{ .Values.statefulset.imageVersion }}
+        image: {{ .values.statefulset.imageVersion }}
         volumeMounts:
         - name: mongodb
           mountPath: /data/db
