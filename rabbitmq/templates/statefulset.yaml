@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: rabbitmq
-        image: "charankumarpadeti/rabbitmq:{{ .Values.statefulset.imageVersion }}"
+        image: rabbitmq
         envFrom:
         - secretRef:
             name: rabbitmq
