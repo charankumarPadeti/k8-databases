@@ -15,7 +15,6 @@ spec:
       tier: db
   serviceName: "mysql"
   replicas: {{ .Values.statefulset.replicas }}
-  minReadySeconds: 10
   template:
     metadata:
       labels:
@@ -26,6 +25,8 @@ spec:
       containers:
       - name: mysql
         image: "charankumarpadeti/mysql:{{ .Values.statefulset.imageVersion }}"
+        args:
+        - "--ignore-db-dir=lost+found"
         envFrom:
         - configMapRef:
             name: mysql
@@ -42,4 +43,4 @@ spec:
       storageClassName: "ebs-sc"
       resources:
         requests:
-          storage: 1Gi
+          storage: 2Gi
