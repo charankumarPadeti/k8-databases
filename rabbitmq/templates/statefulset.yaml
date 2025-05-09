@@ -26,9 +26,12 @@ spec:
       containers:
       - name: rabbitmq
         image: "charankumarpadeti/rabbitmq:{{ .Values.statefulset.imageVersion }}"
+        envFrom:
+        - secretRef:
+            name: rabbitmq
         volumeMounts:
         - name: rabbitmq
-          mountPath: /data/db
+          mountPath: /var/lib/rabbitmq
   volumeClaimTemplates:
   - metadata:
       name: rabbitmq
