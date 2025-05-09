@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mysql
-  Namespace: roboshop
+  namespace: roboshop
   labels:
     app: mysql
     project: roboshop
@@ -13,7 +13,7 @@ spec:
       app: mysql 
       project: roboshop
       tier: db
-  serviceName: mysql
+  serviceName: "mysql"
   replicas: {{ .Values.statefulset.replicas }}
   minReadySeconds: 10
   template:
