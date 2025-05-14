@@ -8,7 +8,7 @@ metadata:
     project: roboshop
     tier: app
 spec:
-  replicas: {{ .Values.deplyment.replicas }}
+  replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels: #these labels are used to find the pods
       app: catalogue
@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: catalogue
-        image: "charankumarpadeti/catalogue: {{ .Values.deplyment.imageVersion }}"
+        image: "charankumarpadeti/catalogue: {{ .Values.deployment.imageVersion }}"
         resources:
           requests:
             memory: "64Mi"
