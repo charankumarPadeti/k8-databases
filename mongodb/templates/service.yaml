@@ -4,7 +4,7 @@ metadata:
   name: mongodb
   Namespace: roboshop
 spec:
-  type: LoadBalancer
+  clusterIP: None
   selector: #paina vuna pod create ipothadi service dheniki velli attach avvali that is the service.
     app: mongodb # has to match .spec.selector.matchLabels
     project: roboshop
