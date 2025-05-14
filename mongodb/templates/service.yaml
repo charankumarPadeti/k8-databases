@@ -11,5 +11,5 @@ spec:
     tier: db
   ports:
     - protocol: TCP
-      port: 80 #service port we can give anything
-      targetPort: 80 #containerPort  , nginx
+      port: 27017 #service port we can give anything
+      targetPort: 27017 #containerPort  , nginx
