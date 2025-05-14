@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalogue
+  namespace: roboshop
+  labels: #these labels are deploment labels
+    app: catalogue
+    project: roboshop
+    tier: app
+spec:
+  replicas: {{ .Values.deplyment.replicas }}
+  selector:
+    matchLabels: #these labels are used to find the pods
+      app: catalogue
+      project: roboshop
+      tier: app
+  template: #template dhagara nuchi kindha antha pod definition , paina antha deployment
+    metadata:
+      labels: #these labels are pod labels
+        app: catalogue
+        project: roboshop
+        tier: app
+    spec:
+      containers:
+      - name: catalogue
+        image: "charankumarpadeti/catalogue: {{ .Values.deplyment.imageVersion }}"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: catalogue
