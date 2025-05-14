@@ -4,11 +4,11 @@ metadata:
   name: mongodb
   Namespace: roboshop
 spec:
-  clusterIP: None
   selector: #paina vuna pod create ipothadi service dheniki velli attach avvali that is the service.
     app: mongodb # has to match .spec.selector.matchLabels
     project: roboshop
     tier: db
+  clusterIP: None
   ports:
     - protocol: TCP
       port: 27017 #service port we can give anything
