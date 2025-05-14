@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: catalogue
+  name: user
   namespace: roboshop
   labels: #these labels are deploment labels
-    app: catalogue
+    app: user
     project: roboshop
     tier: app
 spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels: #these labels are used to find the pods
-      app: catalogue
+      app: user
       project: roboshop
       tier: app
   template: #template dhagara nuchi kindha antha pod definition , paina antha deployment
     metadata:
       labels: #these labels are pod labels
-        app: catalogue
+        app: user
         project: roboshop
         tier: app
     spec:
       containers:
-      - name: catalogue
-        image: "charankumarpadeti/catalogue:{{ .Values.deployment.imageVersion }}"
+      - name: user
+        image: "charankumarpadeti/user:{{ .Values.deployment.imageVersion }}"
         resources:
           requests:
             memory: "128Mi"
@@ -34,4 +34,4 @@ spec:
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
-            name: catalogue
+            name: user
