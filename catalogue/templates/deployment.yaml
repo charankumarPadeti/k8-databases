@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: catalogue
-        image: "charankumarpadeti/catalogue: {{ .Values.deployment.imageVersion }}"
+        image: "charankumarpadeti/catalogue:{{ .Values.deployment.imageVersion }}"
         resources:
           requests:
             memory: "64Mi"
