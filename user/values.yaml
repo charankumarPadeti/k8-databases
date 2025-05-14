@@ -1,4 +1,4 @@
-statefulset:
+deployment:
   replicas: 1
   imageVersion: v1
 hpa:
