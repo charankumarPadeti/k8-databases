@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping
+  namespace: roboshop
+  labels: #these labels are deploment labels
+    app: shipping
+    project: roboshop
+    tier: app
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels: #these labels are used to find the pods
+      app: shipping
+      project: roboshop
+      tier: app
+  template: #template dhagara nuchi kindha antha pod definition , paina antha deployment
+    metadata:
+      labels: #these labels are pod labels
+        app: shipping
+        project: roboshop
+        tier: app
+    spec:
+      containers:
+      - name: shipping
+        image: "charankumarpadeti/shipping:{{ .Values.deployment.imageVersion }}"
+        resources:
+          limits:
+            cpu: "200m"
+            memory: "512Mi"
+          requests:
+            cpu: 50m
+            memory: "256Mi"
+          
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: shipping
