@@ -34,5 +34,5 @@ spec:
           
         imagePullPolicy: Always
         envFrom:
-        - configMapRef:
+        - SecretMapRef:
             name: payment
